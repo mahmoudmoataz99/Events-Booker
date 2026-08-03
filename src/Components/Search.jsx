@@ -14,13 +14,16 @@ function Search() {
  };
 
  return (
-  <form onSubmit={handleSubmit} className="bg-gray-100 rounded-xl lg:mx-20 my-4 px-4 flex justify-between items-center">
-   <input type="search" className="w-full p-2 rounded-lg focus:outline-none"
-    placeholder="Search 4 Events" value={query} onChange={(e) => setQuery(e.target.value)} />
-   <button type="submit" className="ml-2 p-2 text-xl text-gray-600 hover:text-purple-600 focus:outline-none">
+  <form onSubmit={handleSubmit} className="bg-gray-100 rounded-xl mx-4 md:mx-10 my-4 px-4 flex justify-between items-center shadow-sm">
+  <input 
+    type="search" className="w-full p-3 rounded-lg focus:outline-none bg-transparent"
+    placeholder="Search events..." value={query} 
+    onChange={(e) => setQuery(e.target.value)} 
+  />
+  <button type="submit" className="ml-2 p-2 text-xl text-gray-600 hover:text-purple-600 transition">
     <FaSearch />
-   </button>
-  </form>
+  </button>
+</form>
  );
 }
 

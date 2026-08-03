@@ -20,7 +20,7 @@ function SearchRes() {
       try {
         setLoading(true);
         const response = await axios.get('https://tickets-books.vercel.app/events');
-        const eventsWithDefaults = response.data.map(event => ({
+        const eventsWithDefaults = response?.data?.map(event => ({
           ...event,
           categories: Array.isArray(event.categories) ? event.categories : [],
           description: event.description || 'No description available',
@@ -41,12 +41,13 @@ function SearchRes() {
 
   useEffect(() => {
     if (events.length > 0) {
-      const filtered = events.filter(event =>
-        event.name.toLowerCase().includes(searchQuery) ||
-        event.location.toLowerCase().includes(searchQuery) ||
-        event.description.toLowerCase().includes(searchQuery) ||
-        event.categories.some(cat => cat.toLowerCase().includes(searchQuery))
+      const filtered = events?.filter(event =>
+        event.title?.toLowerCase().includes(searchQuery) ||
+        event.location?.toLowerCase().includes(searchQuery) ||
+        event.description?.toLowerCase().includes(searchQuery) ||
+        event.categories.some(cat => cat?.toLowerCase().includes(searchQuery))
       );
+      console.log(filtered);
       setFilteredEvents(filtered);
     }
   }, [searchQuery, events]);
@@ -73,10 +74,11 @@ function SearchRes() {
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6 my-10'>
             {filteredEvents.map(event => (
               <EventCard
-                key={event.id}
-                title={event.name}
-                id={event.id}
+                key={event._id}
+                title={event.title}
+                id={event._id}
                 location={event.location}
+                img={event.imageUrl}
                 time={event.time}
                 date={event.date}
                 categories={event.categories}

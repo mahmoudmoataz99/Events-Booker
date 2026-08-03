@@ -12,7 +12,7 @@ function Footer() {
         <div>
           <h4 className="text-lg font-bold mb-4">Quick Links</h4>
           <ul className="space-y-2">
-            <li><Link to='' className="hover:text-blue-400">Home</Link></li>
+            <li><Link to='/' className="hover:text-blue-400">Home</Link></li>
             <li><Link to='/events' className="hover:text-blue-400">Events</Link></li>
             <li><Link to='/login' className="hover:text-blue-400">Login</Link></li>
             <li><Link to='/register' className="hover:text-blue-400">Register</Link></li>

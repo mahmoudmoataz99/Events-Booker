@@ -22,6 +22,7 @@ function AllEvents() {
           time: event.time || 'Time not specified',
           location: event.location || 'Location not specified'
         }));
+
         setEvents(formattedEvents);
       } catch (err) {
         setError(err.response?.data?.message || err.message || 'Failed to load events');
@@ -33,10 +34,10 @@ function AllEvents() {
     getEvents();
   }, []);
 
-  const filteredEvents = events.filter(event =>
-    event.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    (event.description && event.description.toLowerCase().includes(searchTerm.toLowerCase())) ||
-    event.location.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredEvents = events?.filter(event =>
+    event.title?.toLowerCase().includes(searchTerm?.toLowerCase()) ||
+    (event.description && event.description?.toLowerCase().includes(searchTerm?.toLowerCase())) ||
+    event.location?.toLowerCase().includes(searchTerm?.toLowerCase())
   );
 
   if (loading) {
@@ -79,11 +80,11 @@ function AllEvents() {
           {filteredEvents.map(event => (
             <EventCard
               key={event._id}
-              title={event.name}
+              title={event.title}
               id={event._id}
               location={event.location}
               time={event.time}
-              img={event.image}
+              img={event.imageUrl}
               categories={event.categories}
               date={event.date}
               description={event.description.substring(0, 50) + '...'}

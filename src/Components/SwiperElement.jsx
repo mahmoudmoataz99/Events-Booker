@@ -7,7 +7,7 @@ function SwiperElement(props) {
   return (
     <div className="relative h-[600px] w-full rounded-xl overflow-hidden border-8 border-transparent">
       {/* Image */}
-      <img src={props.img} className="object-fit"
+      <img src={props.img} className="object-cover"
       />
 
       {/* Overlay */}

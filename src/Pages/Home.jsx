@@ -43,10 +43,10 @@ function Home() {
     getEvents();
   }, []);
 
-  const filteredEvents = events.filter(event =>
-    event.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    event.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    event.location.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredEvents = events?.filter(event =>
+    event.title?.toLowerCase().includes(searchTerm?.toLowerCase()) ||
+    event.description?.toLowerCase().includes(searchTerm?.toLowerCase()) ||
+    event.location?.toLowerCase().includes(searchTerm?.toLowerCase())
   );
 
   if (loading) {
@@ -117,12 +117,12 @@ function Home() {
             {filteredEvents.map(event => (
               <SwiperSlide key={event._id} className="pb-10">
                 <SwiperElement
-                  title={event.name}
+                  title={event.title}
                   id={event._id}
                   location={event.location}
                   time={event.time}
                   date={event.date}
-                  img={event.image}
+                  img={event.imageUrl}
                   categories={event.categories}
                   description={event.description}
                 />
@@ -157,10 +157,10 @@ function Home() {
             {filteredEvents.slice(0, 3).map(event => (
               <EventCard
                 key={event._id}
-                title={event.name}
+                title={event.title}
                 id={event._id}
                 location={event.location}
-                img={event.image}
+                img={event.imageUrl}
                 time={event.time}
                 date={event.date}
                 categories={event.categories}

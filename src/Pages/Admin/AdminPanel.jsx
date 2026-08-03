@@ -58,7 +58,7 @@ const AdminPanel = () => {
     if (name === "categories") {
       const updatedCategories = checked
         ? [...eventForm.categories, value]
-        : eventForm.categories.filter(category => category !== value);
+        : eventForm.categories?.filter(category => category !== value);
       setEventForm({ ...eventForm, categories: updatedCategories });
     } else {
       setEventForm({ ...eventForm, [name]: value });
@@ -107,7 +107,7 @@ const AdminPanel = () => {
     if (window.confirm('Are you sure you want to delete this event?')) {
       try {
         await axios.delete(`https://tickets-books.vercel.app/events/${id}`);
-        setEvents(events.filter(event => event._id !== id));
+        setEvents(events?.filter(event => event._id !== id));
       } catch (error) {
         console.error('Error deleting event:', error);
       }
@@ -132,7 +132,7 @@ const AdminPanel = () => {
   };
 
   // Filter events based on search term
-  const filteredEvents = events.filter(event => {
+  const filteredEvents = events?.filter(event => {
     const searchLower = searchTerm.toLowerCase();
     return (
       event.name.toLowerCase().includes(searchLower) ||

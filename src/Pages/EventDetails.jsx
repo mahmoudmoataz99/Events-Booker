@@ -52,8 +52,8 @@ function EventDetails() {
       return;
     }
 
-    if (seatsRequested > event.availableSeats) {
-      alert(`Only ${event.availableSeats} seats available!`);
+    if (seatsRequested > event.availableTickets) {
+      alert(`Only ${event.availableTickets} seats available!`);
       return;
     }
 
@@ -66,7 +66,7 @@ function EventDetails() {
       });
 
       setHasBooking(true);
-      alert(`Successfully booked ${seatsRequested} seat(s) for ${event.name}`);
+      alert(`Successfully booked ${seatsRequested} seat(s) for ${event.title}`);
       navigate('/profile');
     } catch (err) {
       setError(err.response?.data?.message || err.message || 'Booking failed');
@@ -112,11 +112,11 @@ function EventDetails() {
     <section className="max-w-6xl mx-auto px-4 py-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
         {/* Event Image */}
-        <img src={event.image} alt={event.name} className="w-full h-64 md:h-96 object-fit  rounded-lg shadow-lg"/>
+        <img src={event.imageUrl} alt={event.title} className="w-full h-64 md:h-96 object-fit  rounded-lg shadow-lg"/>
 
         {/* Event Details */}
         <article className="space-y-5">
-          <h1 className="text-3xl md:text-4xl font-bold">{event.name}</h1>
+          <h1 className="text-3xl md:text-4xl font-bold">{event.title}</h1>
 
           {event.categories.length > 0 && (
             <div className="flex flex-wrap gap-2">
@@ -132,10 +132,10 @@ function EventDetails() {
 
           <div className="text-base md:text-lg space-y-2">
             <p><strong>Date:</strong> {new Date(event.date).toLocaleDateString()}</p>
-            <p><strong>Time:</strong> {event.time}</p>
+            <p><strong>Time:</strong> {new Date(event.date).toLocaleTimeString()}</p>
             <p><strong>Location:</strong> {event.location}</p>
             <p><strong>Price:</strong> ${event.price.toFixed(2)}</p>
-            <p><strong>Seats Available:</strong> {event.availableSeats}</p>
+            <p><strong>Seats Available:</strong> {event.availableTickets}</p>
           </div>
 
           {/* Existing booking message */}
@@ -150,7 +150,7 @@ function EventDetails() {
             <label className="block mb-2 font-medium">Number of Seats:</label>
             <input type="number" min="1" max="4" value={seatsRequested}
               onChange={(e) => {
-                const value = Math.max(1, Math.min(event.availableSeats, parseInt(e.target.value) || 1));
+                const value = Math.max(1, Math.min(event.availableTickets, parseInt(e.target.value) || 1));
                 setSeatsRequested(value);
               }} className="w-24 p-2 border border-gray-300 rounded" disabled={hasBooking} />
           </div>
@@ -163,10 +163,10 @@ function EventDetails() {
                   View Your Booking
                 </Link>
               ) : (
-                <button onClick={handleBooking} disabled={loading || event.availableSeats === 0}
-                  className={`px-6 py-3 rounded w-full md:w-auto ${loading || event.availableSeats === 0
+                <button onClick={handleBooking} disabled={loading || event.availableTickets === 0}
+                  className={`px-6 py-3 rounded w-full md:w-auto ${loading || event.availableTickets === 0
                     ? 'bg-gray-400 cursor-not-allowed' : 'bg-purple-600 hover:bg-purple-700 text-white'}`}>
-                  {loading ? 'Processing...' : event.availableSeats === 0 ? 'Sold Out' : 'Book Now'}
+                  {loading ? 'Processing...' : event.availableTickets === 0 ? 'Sold Out' : 'Book Now'}
                 </button>
               )
             ) : (

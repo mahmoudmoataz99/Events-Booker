@@ -21,25 +21,24 @@ function App() {
         { path: '', element: <Home /> },
         { path: 'login', element: <Login /> },
         { path: 'register', element: <Register /> },
-        { 
-          path: 'events', 
+        {
+          path: 'events',
           element: <AllEvents />
         },
-        { 
-          path: 'contact', 
+        {
+          path: 'contact',
           element: <Contact />
         },
-        { 
-          path: 'event/:id', 
+        {
+          path: 'event/:id',
           element: <EventDetails />
+        }, {
+          path: 'profile',
+          element: <ProtectedRoute> <Profile /></ProtectedRoute>
         },
-        { 
-          path: 'search', 
-          element:<SearchRes />
-        },
-        { 
-          path: 'profile', 
-          element: <Profile />
+        {
+          path: 'search',
+          element: <SearchRes />
         },
         {
           path: 'admin',
@@ -48,7 +47,7 @@ function App() {
               <AdminPanel />
             </ProtectedRoute>
           )
-        },
+        }
       ]
     }
   ]);
