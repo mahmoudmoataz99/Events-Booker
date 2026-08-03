@@ -114,13 +114,12 @@ function Home() {
             pagination={{ clickable: true }}
             className="py-6"
           >
-            {filteredEvents.map(event => (
+            {filteredEvents.slice(0,4).map(event => (
               <SwiperSlide key={event._id} className="pb-10">
                 <SwiperElement
                   title={event.title}
                   id={event._id}
                   location={event.location}
-                  time={event.time}
                   date={event.date}
                   img={event.imageUrl}
                   categories={event.categories}
